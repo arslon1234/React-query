@@ -3,7 +3,8 @@ import { SignIn, SignUp } from "../types";
 import { signIn, signUp } from "../service";
 import { saveAccessToken } from "@utils/token-service";
 import { Notification } from "@utils/notification";
-// SignIn Mutation
+
+// ========  SignIn Mutation ==========
 export function useSignIn(){
     return useMutation({
         mutationFn:(data:SignIn)=> signIn(data),
@@ -20,7 +21,8 @@ export function useSignIn(){
         }
     })
 }
-// SignUp Mutation
+
+// ========= SignUp Mutation ===========
 export function useSignUp(){
     return useMutation({
         mutationFn: (data:SignUp)=> signUp(data),
