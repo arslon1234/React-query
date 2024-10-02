@@ -2,11 +2,15 @@ import { Button, Form, Input, Modal } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { useEffect } from "react";
 import { ModalPropType } from "@types";
-import { useCreateCategory, useUpdateCategory } from "../hooks/mutations";
-const Index = ({ open, handleCancel, update }: ModalPropType) => {
+import { useCreateSubCategory, useUpdateSubCategory } from "../hooks/mutations";
+const Index = (props: ModalPropType) => {
+  const { open, handleCancel, update, id } = props;
+
   const [form] = useForm();
-  const { mutate: createMutate, isPending:isCreating } = useCreateCategory();
-  const {mutate: updateMutate, isPending:isUpdating} = useUpdateCategory()
+  const { mutate: createMutate, isPending: isCreating } =
+    useCreateSubCategory();
+  const { mutate: updateMutate, isPending: isUpdating } =
+    useUpdateSubCategory();
   useEffect(() => {
     if (open) {
       if (update) {
@@ -21,18 +25,23 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
 
   const handleSubmit = (values: any) => {
     if (update) {
-      const payload = {...values, id: update?.id}
-      updateMutate(payload,{
-        onSuccess:()=>{
-          handleCancel()
-        }
-      })
+      const payload = {
+        ...values,
+        parent_category_id: Number(id),
+        id: update.id,
+      };
+      updateMutate(payload, {
+        onSuccess: () => {
+          handleCancel();
+        },
+      });
     } else {
-      createMutate(values,{
-        onSuccess:()=>{
-          handleCancel()
-        }
-      })
+      const payload = { ...values, parent_category_id: Number(id) };
+      createMutate(payload, {
+        onSuccess: () => {
+          handleCancel();
+        },
+      });
     }
   };
 
@@ -40,7 +49,7 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
     <>
       <Modal
         open={open}
-        title={update ? "Edit category" : "Create category"}
+        title={update ? "Edit sub-category" : "Create sub-category"}
         onCancel={handleCancel}
         footer={false}
       >
@@ -52,9 +61,9 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
           layout="vertical"
         >
           <Form.Item
-            label="Category name"
+            label="SubCategory name"
             name="name"
-            rules={[{ required: true, message: "Enter category name" }]}
+            rules={[{ required: true, message: "Enter sub-category name" }]}
           >
             <Input size="large" />
           </Form.Item>

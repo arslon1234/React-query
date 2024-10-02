@@ -2,7 +2,7 @@ import axiosInstance from "@api";
 import { Params } from "@types";
 import { Category } from "../types";
 // ========= GET ===========
-export const getCategory = async (params: Params) => {
+export const getCategory = async (params: Params = { search: "", limit: 10, page: 1 }) => {
   const response = await axiosInstance.get("category/search", {
     params,
   });
@@ -15,7 +15,7 @@ export const createCategory = async (data: Category) => {
   return response?.data;
 };
 
-// ========= CREATE ===========
+// ========= Update ===========
 export const updateCategory = async (data: Category) => {
   const { id } = data;
   delete data.id;

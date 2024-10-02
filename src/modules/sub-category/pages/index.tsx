@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Button, Space, Tooltip } from "antd";
-import { EditOutlined,ArrowsAltOutlined } from "@ant-design/icons";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { useCategory } from "../hooks/queries";
-import { useDeleteCategory } from "../hooks/mutations";
+import { EditOutlined } from "@ant-design/icons";
+import { useSearchParams,useParams } from "react-router-dom";
+
+import { useSubCategory } from "../hooks/queries";
+import { useDeleteSubCategory } from "../hooks/mutations";
 import { Table, ConfirmDelete, Search } from "@components";
-import { RecordType } from "../types";
+import { GetSubCategory } from "../types";
+// import { RecordType } from "../types";
 import Modal from "./modal";
 const Index = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -16,9 +18,10 @@ const Index = () => {
     page: 1,
     limit: 5,
   });
-  const navigate = useNavigate()
-  const { categories, count } = useCategory(params)?.data || {};
-  const {mutate} = useDeleteCategory()
+  const {id} = useParams()
+  const payload:GetSubCategory = {params:{...params}, id}
+  const {subcategories,count} = useSubCategory(payload).data || {}
+  const {mutate} = useDeleteSubCategory()
   useEffect(() => {
     const pageFromParams = searchParams.get("page") || "1";
     const limitFromParams = searchParams.get("limit") || "5";
@@ -59,7 +62,7 @@ const Index = () => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: RecordType) => (
+      render: (_: any, record: any) => (
         <Space size="middle">
           <Tooltip title="Edit">
             <Button
@@ -69,29 +72,22 @@ const Index = () => {
             />
           </Tooltip>
           <ConfirmDelete id={record.id} deleteItem={(id:string | number)=>mutate(id)} />
-          <Tooltip title="sub-category">
-            <Button
-              type="default"
-              onClick={() => navigate(`/layout/category/${record.id}`)}
-              icon={<ArrowsAltOutlined />}
-            />
-          </Tooltip>
         </Space>
       ),
     },
   ];
   return (
     <>
-      <Modal open={modalVisible} handleCancel={handleCancel} update={update} />
-      <h1>Category</h1>
+      <Modal open={modalVisible} handleCancel={handleCancel} update={update} id={id}/>
+      <h1>Sub Category: {id}</h1>
       <div className="pages">
         <Search params={params} setParams={setParams} />
         <Button type="primary" onClick={() => setModalVisible(true)}>
-          Add Category
+          Add Sub Category
         </Button>
       </div>
       <Table
-        data={categories}
+        data={subcategories}
         columns={columns}
         pagination={{
           current: params.page,

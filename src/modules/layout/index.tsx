@@ -7,6 +7,7 @@ import {
 import { Button, Layout, theme, Menu, Modal } from "antd";
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { routes } from "../../router/routes";
+import { removeAccessToken } from "@utils/token-service";
 // import MainLogo from "../../assets/main-logo.svg";
 
 const { Header, Sider, Content } = Layout;
@@ -38,6 +39,7 @@ const Index = () => {
       content: "Your session will be closed.",
       onOk() {
         navigate("/");
+        removeAccessToken()
       },
     });
   };
