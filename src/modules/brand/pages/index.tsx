@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Space, Tooltip } from "antd";
-import { EditOutlined } from "@ant-design/icons";
-import { useSearchParams } from "react-router-dom";
+import { EditOutlined,ArrowsAltOutlined } from "@ant-design/icons";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useBrand } from "../hooks/queries";
 import { useDeleteBrand } from "../hooks/mutations";
 import { Table, ConfirmDelete, Search } from "@components";
@@ -18,7 +18,7 @@ const Index = () => {
   });
   const { data } = useBrand(params);
   const { brands, count } = data || {};
-
+  const navigate = useNavigate()
   const {mutate} = useDeleteBrand()
   useEffect(() => {
     const pageFromParams = searchParams.get("page") || "1";
@@ -74,6 +74,13 @@ const Index = () => {
             />
           </Tooltip>
           <ConfirmDelete id={record.id} deleteItem={(id:string | number)=>mutate(id)} />
+          <Tooltip title="brand-category">
+            <Button
+              type="default"
+              onClick={() => navigate(`/layout/brand/${record.id}`)}
+              icon={<ArrowsAltOutlined />}
+            />
+          </Tooltip>
         </Space>
       ),
     },

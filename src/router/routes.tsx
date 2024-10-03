@@ -20,11 +20,6 @@ export const routes = [
       path: "/layout/brand",
       icon: <ShopOutlined />,
     },
-    {
-      title: "Brand Category",
-      path: "/layout/brand-category",
-      icon: <ShopOutlined />,
-    },
     // {
     //   title: "Ads",
     //   path: "/layout/ads",

@@ -28,7 +28,7 @@ const Index = () => {
         <Route path="layout/*" element={<ProtectedLayout> <Layout /></ProtectedLayout>}>
           <Route index element={<Product />} />
           <Route path="brand" element={<Brand />} />
-          <Route path="brand-category" element={<BrandCategory />} />
+          <Route path="brand/:id" element={<BrandCategory />} />
           <Route path="category" element={<Category />} />
           <Route path="category/:id" element={<SubCategory />} />
         </Route>
