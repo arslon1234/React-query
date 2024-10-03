@@ -29,7 +29,7 @@ export function useUpdateSubCategory() {
         onSuccess:(response)=>{
             Notification("success", response.message)
         },
-        onSettled: async (_,error,variables)=>{
+        onSettled: async (_,error)=>{
             if(error){
                 Notification("error", error.message)
             }else {
