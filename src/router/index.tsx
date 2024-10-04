@@ -17,7 +17,8 @@ import {
   BrandCategory,
   ProtectedLayout,
   ProtectedAuth,
-  SubCategory
+  SubCategory,
+  ProductDetail
 } from "@modules";
 const Index = () => {
   const router = createBrowserRouter(
@@ -27,6 +28,7 @@ const Index = () => {
         <Route path="sign-up" element={<SignUp />} />
         <Route path="layout/*" element={<ProtectedLayout> <Layout /></ProtectedLayout>}>
           <Route index element={<Product />} />
+          <Route path="product/:id" element={<ProductDetail />} />
           <Route path="brand" element={<Brand />} />
           <Route path="brand/:id" element={<BrandCategory />} />
           <Route path="category" element={<Category />} />

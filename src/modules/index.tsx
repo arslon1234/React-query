@@ -29,6 +29,9 @@ const BrandCategory = loadable(() => import("./brand-category/pages/index"), {
 const SubCategory = loadable(() => import("./sub-category/pages/index"), {
   fallback: <Loading />,
 });
+const ProductDetail = loadable(() => import("./product-detail/pages/index"), {
+  fallback: <Loading />,
+});
 import {ProtectedLayout,ProtectedAuth} from "./protected-route";
 export {
   Layout,
@@ -41,5 +44,6 @@ export {
   BrandCategory,
   ProtectedLayout,
   ProtectedAuth,
-  SubCategory
+  SubCategory,
+  ProductDetail
 };

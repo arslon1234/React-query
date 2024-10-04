@@ -47,7 +47,6 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
     formData.append("file", selectedFile);
     if (update) {
       const payload = {...values, id: update.id, categoryId: values.category_id};
-      
       updateMutate(payload, {
         onSuccess: () => {
           handleCancel();
@@ -100,9 +99,6 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
             rules={[{ required: false, message: "Select a category" }]}
           >
             <Select placeholder="Select a category" size="large">
-              <Option value="" hidden>
-                Select...
-              </Option>
               {categories?.map((item: any) => (
                 <Option key={item.id} value={item.id}>
                   {item.name}
