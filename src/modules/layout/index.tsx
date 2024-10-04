@@ -8,8 +8,8 @@ import { Button, Layout, theme, Menu, Modal } from "antd";
 import { NavLink, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { routes } from "../../router/routes";
 import { removeAccessToken } from "@utils/token-service";
-// import MainLogo from "../../assets/main-logo.svg";
-
+import MainLogo from "../../assets/logo.svg";
+import LogoTitle from '../../assets/logo_title.svg'
 const { Header, Sider, Content } = Layout;
 
 const Index = () => {
@@ -41,6 +41,13 @@ const Index = () => {
         navigate("/");
         removeAccessToken()
       },
+      okButtonProps: {
+        style: {
+          backgroundColor: "#d55200", 
+          borderColor: "#ff4d4f", 
+        },
+      },
+      okText: "Confirm", 
     });
   };
 
@@ -64,20 +71,22 @@ const Index = () => {
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: collapsed ? "center" : "space-between",
-            padding: collapsed ? "16px 8px" : "16px",
+            justifyContent: collapsed ? "center" : "space-around",
+            padding: collapsed ? "16px 8px" : "20px",
             marginBottom: "16px",
           }}
         >
-          {/* <img
+          <img
             src={MainLogo}
             alt="Main Logo"
-            style={{ width: collapsed ? 32 : 48 }}
-          /> */}
+            style={{ width: collapsed ? 40 : 48 }}
+          />
           {!collapsed && (
-            <span style={{ fontSize: "20px", color: "#fff", margin: "9px" }}>
-              TechnoArk
-            </span>
+            <img
+            src={LogoTitle}
+            alt="Logo title"
+            // style={{ width: collapsed ? 32 : 48 }}
+          />
           )}
         </div>
         <Menu

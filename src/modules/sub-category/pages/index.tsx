@@ -82,7 +82,7 @@ const Index = () => {
       <h1>Sub Category: {id}</h1>
       <div className="pages">
         <Search params={params} setParams={setParams} />
-        <Button type="primary" onClick={() => setModalVisible(true)}>
+        <Button type="primary" className="btn" onClick={() => setModalVisible(true)}>
           Add Sub Category
         </Button>
       </div>

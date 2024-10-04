@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 .pages {
     display: flex;
@@ -12,4 +13,24 @@
 .search-input {
     max-width: 450px;
 }
-
+.btn{
+    background-color: #d55200 !important;
+}
+.ant-menu-dark .ant-menu-item-selected {
+    background-color: #d55200; 
+  }
+  
+  .ant-menu-dark .ant-menu-item-selected a {
+    color: #fff !important; 
+  }
+  .ant-pagination-item-active {
+    border-color: #d55200 !important;  
+  }
+  .ant-pagination-item-active a {
+    font-weight: normal;
+    color: #383838 !important;  
+  }
+  
+  
+  
+  

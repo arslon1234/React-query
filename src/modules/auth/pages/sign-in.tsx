@@ -5,6 +5,7 @@ import { useSignIn } from "../hooks/mutations";
 import type { SignIn } from "../types";
 import "./style.scss";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const SignIn = () => {
   const [form] = Form.useForm();
@@ -82,6 +83,7 @@ const SignIn = () => {
               size="large"
               style={{ width: "100%" }}
               type="primary"
+              className="btn"
               htmlType="submit"
               loading={isPending}
             >
@@ -89,6 +91,9 @@ const SignIn = () => {
             </Button>
           </Form.Item>
         </Form>
+        <div>
+          <NavLink to="/sign-up">create an account</NavLink>
+        </div>
       </div>
     </div>
   );

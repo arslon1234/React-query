@@ -89,7 +89,7 @@ const Index = () => {
       <h1>Product</h1>
       <div className="pages">
         <Search params={params} setParams={setParams} />
-        <Button type="primary" onClick={() => setModalVisible(true)}>
+        <Button type="primary" className="btn" onClick={() => setModalVisible(true)}>
           Add Product
         </Button>
       </div>

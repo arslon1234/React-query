@@ -75,6 +75,7 @@ const Index = (props: ModalPropType) => {
               style={{ width: "100%" }}
               type="primary"
               htmlType="submit"
+              className="btn"
               loading={isCreating || isUpdating}
             >
               {update ? "Update" : "Add"}

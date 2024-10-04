@@ -104,6 +104,7 @@ const SignUp = () => {
               style={{ width: "100%" }}
               type="primary"
               htmlType="submit"
+              className="btn"
               loading={isPending}
             >
               Sign Up
