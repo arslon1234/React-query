@@ -4,6 +4,8 @@ import { Params } from "@types";
 export function useCategory(params:Params) {
     return useQuery({
         queryKey: ["category", params],
-        queryFn: ()=> getCategory(params)
+        queryFn: ()=> getCategory(params),
+        // staleTime: 1000,
+        // useForwardRef
     })
 }

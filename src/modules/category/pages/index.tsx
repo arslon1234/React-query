@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Space, Tooltip } from "antd";
+import { ColumnsType } from "antd/es/table";
 import { EditOutlined,ArrowsAltOutlined } from "@ant-design/icons";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useCategory } from "../hooks/queries";
 import { useDeleteCategory } from "../hooks/mutations";
 import { Table, ConfirmDelete, Search } from "@components";
-import { RecordType } from "../types";
+
 import Modal from "./modal";
 const Index = () => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -51,7 +52,8 @@ const Index = () => {
     setModalVisible(false);
     setUpdate(null);
   };
-  const columns = [
+  
+  const columns:ColumnsType = [
     {
       title: "Name",
       dataIndex: "name",
@@ -59,7 +61,7 @@ const Index = () => {
     {
       title: "Action",
       key: "action",
-      render: (_: any, record: RecordType) => (
+      render: (_: any, record: any) => (
         <Space size="middle">
           <Tooltip title="Edit">
             <Button

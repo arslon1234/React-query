@@ -20,6 +20,7 @@ import {
   SubCategory,
   ProductDetail
 } from "@modules";
+// React.lazy
 const Index = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(

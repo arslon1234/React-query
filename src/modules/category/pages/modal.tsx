@@ -5,6 +5,8 @@ import { ModalPropType } from "@types";
 import { useCreateCategory, useUpdateCategory } from "../hooks/mutations";
 const Index = ({ open, handleCancel, update }: ModalPropType) => {
   const [form] = useForm();
+  // const {mutate} = useCreateCategory()
+  // const {mutate} = useUpdateCategory()
   const { mutate: createMutate, isPending:isCreating } = useCreateCategory();
   const {mutate: updateMutate, isPending:isUpdating} = useUpdateCategory()
   useEffect(() => {
@@ -18,7 +20,6 @@ const Index = ({ open, handleCancel, update }: ModalPropType) => {
       }
     }
   }, [open, update, form]);
-
   const handleSubmit = (values: any) => {
     if (update) {
       const payload = {...values, id: update?.id}
